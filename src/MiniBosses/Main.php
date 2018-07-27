@@ -52,9 +52,9 @@ class Main extends PluginBase implements Listener {
 					$this->data->set($name, ["network-id" => (int) $networkId, "x" => $sender->x, "y" => $sender->y, "z" => $sender->z, "level" => $sender->level->getName(), "health" => 20, "range" => 10, "attackDamage" => 1, "attackRate" => 10, "speed" => 1, "drops" => "1;0;1;;100 2;0;1;;50 3;0;1;;25", "respawnTime" => 100, "skin" => ($networkId === 63 ? bin2hex($sender->getSkin()->getSkinData()) : ""), "heldItem" => ($heldItem->getId().";".$heldItem->getDamage().";".$heldItem->getCount().";".$heldItem->getNamedTag()->toString()), "scale" => 1]);
 					$this->data->save();
 					$this->spawnBoss($name);
-					$sender->sendMessage(TF::GREEN."Successfully created MiniBoss: $name");
-				}else $sender->sendMessage(TF::RED."That MiniBoss already exists!");
-			}else $sender->sendMessage(TF::RED."Usage: /minibosses create network-id name");
+					$sender->sendMessage(TF::GREEN."成功新增刷怪点: $name ，请继设置生成点");
+				}else $sender->sendMessage(TF::RED."此名字的刷怪点已存在!");
+			}else $sender->sendMessage(TF::RED."正用用法: /minibosses create network-id name");
 		}elseif($args[0] === "spawn") {
 			if(count($args) >= 2) {
 				array_shift($args);
@@ -62,10 +62,10 @@ class Main extends PluginBase implements Listener {
 				if($this->data->get($name, null) !== null) {
 					$ret = $this->spawnBoss($name);
 					if($ret === true) {
-						$sender->sendMessage("Successfully spawned $name");
-					}else $sender->sendMessage(TF::RED."Error spawning $name : $ret");
-				}else $sender->sendMessage(TF::RED."That MiniBoss doesn't exist!");
-			}else $sender->sendMessage(TF::RED."Usage: /minibosses spawn name");
+						$sender->sendMessage("成功设置 $name 的生成点");
+					}else $sender->sendMessage(TF::RED."在设置 $name 的生成点时出现错误 : $ret");
+				}else $sender->sendMessage(TF::RED."此刷怪点不存在!");
+			}else $sender->sendMessage(TF::RED."正确用法: /minibosses spawn name");
 		}elseif($args[0] === "delete") {
 			if(count($args) >= 2) {
 				array_shift($args);
@@ -83,14 +83,14 @@ class Main extends PluginBase implements Listener {
 					}
 					$this->data->remove($name);
 					$this->data->save();
-					$sender->sendMessage(TF::GREEN."Successfully removed MiniBoss: $name");
-				}else $sender->sendMessage(TF::RED."That MiniBoss doesn't exist!");
-			}else $sender->sendMessage(TF::RED."Usage: /minibosses delete name");
+					$sender->sendMessage(TF::GREEN."成功删除刷怪点: $name");
+				}else $sender->sendMessage(TF::RED."此刷怪点不存在!");
+			}else $sender->sendMessage(TF::RED."正确用法: /minibosses delete name");
 		}elseif($args[0] === "list") {
-			$sender->sendMessage(TF::GREEN."----MiniBosses----");
+			$sender->sendMessage(TF::GREEN."----MiniBosses 刷怪插件----");
 			$sender->sendMessage(implode(', ', array_keys($this->data->getAll())));
 		}else {
-			$sender->sendMessage(TF::RED."Usage: /minibosses create/spawn/delete/list");
+			$sender->sendMessage(TF::RED."用法: /minibosses create/spawn/delete/list");
 		}
 		return true;
 	}
