@@ -30,10 +30,10 @@ class Main extends PluginBase implements Listener {
 
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $args) : bool {
 		if(!isset($args[0])) {
-			$sender->sendMessage("Usage: /minibosses create/spawn/delete/list");
+			$sender->sendMessage("用法: /minibosses create/spawn/delete/list");
 		}elseif($args[0] === "create") {
 			if(!($sender instanceof Player)) {
-				$sender->sendMessage("Please run in-game");
+				$sender->sendMessage("请在游中使用这个命令");
 			}elseif(count($args) >= 3) {
 				$networkId = $args[1];
 				array_shift($args);
