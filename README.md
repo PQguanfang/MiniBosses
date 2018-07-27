@@ -1,40 +1,44 @@
 # MiniBosses
-A very customizable boss plugin
-# Commands
-Create and spawn boss: /minibosses create network-id/entityType Name
+一个刷怪插件
 
-Spawn boss: /minibosses spawn Name
+我只是汉化 原插件2年前更新 最近有人捡坑了 我就拿来分享了 如果有问题 请到捡坑者的目区报告i
 
-Remove boss: /minibosses delete Name
+# 指令
+新建刷怪点: /minibosses create network-id/entityType Name
 
-List bosses in the config: /minibosses list
+设置刷怪点的生成点: /minibosses spawn Name
 
-#Supported Entities
+删除刷怪点: /minibosses delete Name
+
+刷怪点列表: /minibosses list
+
+#已支持的生物
 Chicken, Cow, Pig, Sheep, Wolf, Villager, Mooshroom, Squid, Rabbit, Bat, IronGolem, SnowGolem, Ocelot, 
 Horses, Zombie, Creeper, Skeleton, Spider, pigman, slime, enderman, silverfish, cavespider, ghast, magmacube
 , blaze, zombievillager, witch, stray, husk, witherskeleton, wither, enderdragon, shulker, endermite, human
 
-# Config Explanation
+# 配置文件
 ```
-BossName:
-  network-id: 63
-  x: 127.444900 #spawn position x
-  "y": 4.000000 #spawn position y
-  z: 160.134600 #spawn position z
-  level: FLAT
-  health: 20 #number of half hearts
-  range: 10 #no. of blocks to stay in from spawn position, if exceeded will teleport back to spawn and heal to full health
-  attackDamage: 1 #number of half hearts
-  attackRate: 10 #in ticks
-  speed: 1
-  drops: 1;0;1;;100 2;0;1;;50 3;0;1;;25 #in the format: ID;Damage;Count;NBT;DropChance(1-100),space separate items
-  respawnTime: 100 #in ticks
-  skin: "" #in hex, applicable only to human
-  heldItem: "276;36;1;\n\x03\0tag\t\x04\0ench\n\x01\0\0\0\x02\x02\0id\x05\0\x02\x03\0lvl\x01\0\0\0"#in the format: ID;Damage;Count;NBT
+刷怪点名字:
+  network-id: 63 刷的生物种类id
+  x: 127.444900 #坐标
+  "y": 4.000000 #坐标
+  z: 160.134600 #坐标
+  level: FLAT 所在的世界
+  health: 20 #怪物生命值
+  range: 10 #怪物到距离刷怪点多远就会自动消失
+  attackDamage: 1 #伤害值
+  attackRate: 10 #伤害频率
+  speed: 1 速度
+  drops: 1;0;1;;100 2;0;1;;50 3;0;1;;25 #掉落物，格式: ID;Damage;Count;NBT;DropChance(1-100)
+  如果插件报错，这就写物品id：特殊值：数量 后面就不写了
+  respawnTime: 100 #刷新时长
+  skin: "" #皮肤
+  heldItem: "276;36;1;\n\x03\0tag\t\x04\0ench\n\x01\0\0\0\x02\x02\0id\x05\0\x02\x03\0lvl\x01\0\0\0"#in the format: ID;Damage;Count;NBT 手持物品 如果报错 同掉落物
   scale: 1
 ```
 
-# Copyright
+# 许可与版权
 Copyright (C) 2016 wolfdale All Rights Reserved.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
